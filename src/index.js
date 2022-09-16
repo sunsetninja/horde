@@ -8,7 +8,7 @@ const formatLogs = (logs, {day,prefix}) => {
     return Object.entries(logs.idb)
         .map(([level, logs]) => logs.map(log => ({ ...log, level, tsz: new Date(log.tsz) })))
         .flat()
-        .filter(log => !day || log.tsz.getDay() === new Date(day).getDay())
+        .filter(log => !day || log.tsz.getUTCDay() === new Date(day).getUTCDay())
         .filter(log => !prefix || log.prefix === prefix)
         .sort((a, b) => a.tsz - b.tsz)
 }
